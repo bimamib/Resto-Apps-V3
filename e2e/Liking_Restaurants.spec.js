@@ -1,3 +1,5 @@
+const assert = require('assert');
+
 /* eslint-disable no-undef */
 Feature('Liking Restaurants');
 
@@ -12,7 +14,7 @@ Scenario('showing empty liked restaurants', ({ I }) => {
   I.see('Tidak ada restaurant untuk ditampilkan', '.restaurant-item__not__found');
 });
 
-Scenario('liking one restaurant', ({ I }) => {
+Scenario('liking one restaurant', async ({ I }) => {
   I.waitForElement('.restaurant-item__not__found', 5);
   I.see('Tidak ada restaurant untuk ditampilkan', '.restaurant-item__not__found');
 
@@ -21,6 +23,11 @@ Scenario('liking one restaurant', ({ I }) => {
 
   I.waitForElement('.restaurant-list__content');
   I.seeElement('.restaurant-list__content a');
+
+  const firstRestaurant = locate('.restaurant-list__content a').first();
+  const firstRestaurantTitle = await I.grabTextFrom(firstRestaurant);
+  I.click(firstRestaurant);
+
   I.click(locate('.restaurant-list__content a').first());
 
   I.waitForElement('#likeButton', 5);
@@ -31,4 +38,7 @@ Scenario('liking one restaurant', ({ I }) => {
 
   I.waitForElement('.restaurant-item', 5);
   I.seeElement('.restaurant-item');
+  const likedRestaurantTitle = await I.grabTextFrom('.restaurant-list__content');
+
+  assert.strictEqual(firstRestaurantTitle, likedRestaurantTitle);
 });
