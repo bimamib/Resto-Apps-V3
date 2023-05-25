@@ -42,7 +42,7 @@ const createRestaurantDetailTemplate = (restaurant) => `
 `;
 
 const createRestaurantListTemplate = (restaurant) => `
-  <div id="restaurant-item">
+  <div id="restaurant-item" class="restaurant-item">
     <div class="restaurant-list__header">
       <img class="restaurant-list__header__image" alt="${restaurant.name}"
            src="${restaurant.pictureId ? CONFIG.BASE_IMAGE_URL + restaurant.pictureId : 'https://picsum.photos/id/666/800/450?grayscale'}">
