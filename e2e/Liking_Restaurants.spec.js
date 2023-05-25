@@ -8,10 +8,12 @@ Before(({ I }) => {
 Scenario('showing empty liked restaurants', ({ I }) => {
   // I.seeElement('#query');
   // I.seeElement('.query'); Menyebabkan error
+  I.waitForElement('.restaurant-item__not__found', 5);
   I.see('Tidak ada restaurant untuk ditampilkan', '.restaurant-item__not__found');
 });
 
 Scenario('liking one restaurant', ({ I }) => {
+  I.waitForElement('.restaurant-item__not__found', 5);
   I.see('Tidak ada restaurant untuk ditampilkan', '.restaurant-item__not__found');
 
   I.amOnPage('/');
@@ -21,9 +23,12 @@ Scenario('liking one restaurant', ({ I }) => {
   I.seeElement('.restaurant-list__content a');
   I.click(locate('.restaurant-list__content a').first());
 
+  I.waitForElement('#likeButton', 5);
   I.seeElement('#likeButton');
   I.click('#likeButton');
 
   I.amOnPage('/#/favorite');
+
+  I.waitForElement('restaurant-item', 5);
   I.seeElement('.restaurant-item');
 });

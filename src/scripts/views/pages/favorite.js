@@ -19,10 +19,10 @@ const Favorite = {
     if (restaurants.length === 0) {
       restaurantsContainer.innerHTML = '<p class="restaurant-item__not__found">Tidak ada restaurant untuk ditampilkan</p>';
     }
-    
+
     restaurants.forEach((restaurant) => {
       restaurantsContainer.innerHTML = '';
-    
+
       restaurantsContainer.innerHTML += createRestaurantListTemplate(restaurant);
     });
   },
