@@ -29,6 +29,6 @@ Scenario('liking one restaurant', ({ I }) => {
 
   I.amOnPage('/#/favorite');
 
-  I.waitForElement('restaurant-item', 5);
+  I.waitForElement('.restaurant-item', 5);
   I.seeElement('.restaurant-item');
 });
